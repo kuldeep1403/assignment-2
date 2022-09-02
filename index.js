@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/userRoutes");
+const cookieParser = require("cookie-parser");
 const globalErrorHandler = require("./controller/errorController");
 
 const app = express();
@@ -22,6 +23,7 @@ dotenv.config({
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cors());
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
